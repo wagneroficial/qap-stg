@@ -1,0 +1,571 @@
+{
+  "info": {
+    "title": "Comprehensive Meteorological Prediction Intelligence Network",
+    "contact": {
+      "url": "https://meteo-network.com/docs",
+      "name": "Soporte API",
+      "email": "api-support@meteo-network.com"
+    },
+    "version": "1.0.0",
+    "description": "API para previsiones meteorológicas y análisis de condiciones climáticas"
+  },
+  "paths": {
+    "/forecast": {
+      "get": {
+        "summary": "Obtener pronóstico climático",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ForecastData"
+                }
+              }
+            },
+            "description": "Datos del pronóstico climático"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Parámetros inválidos"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Ubicación no encontrada"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Error interno del servidor"
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "latitude",
+            "schema": {
+              "type": "number",
+              "format": "float"
+            },
+            "required": true,
+            "description": "Latitud de la ubicación"
+          },
+          {
+            "in": "query",
+            "name": "longitude",
+            "schema": {
+              "type": "number",
+              "format": "float"
+            },
+            "required": true,
+            "description": "Longitud de la ubicación"
+          },
+          {
+            "in": "query",
+            "name": "days",
+            "schema": {
+              "type": "integer",
+              "default": 5,
+              "maximum": 7,
+              "minimum": 1
+            },
+            "required": false,
+            "description": "Cantidad de días para el pronóstico"
+          },
+          {
+            "in": "query",
+            "name": "units",
+            "schema": {
+              "enum": [
+                "metric",
+                "imperial"
+              ],
+              "type": "string",
+              "default": "metric"
+            },
+            "required": false,
+            "description": "Unidades de medida (metric, imperial)"
+          }
+        ],
+        "description": "Retorna el pronóstico del clima para los próximos días"
+      }
+    },
+    "/current-weather": {
+      "get": {
+        "summary": "Obtener clima actual",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WeatherData"
+                }
+              }
+            },
+            "description": "Datos del clima actual"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Parámetros inválidos"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Ubicación no encontrada"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Error interno del servidor"
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "latitude",
+            "schema": {
+              "type": "number",
+              "format": "float"
+            },
+            "required": true,
+            "description": "Latitud de la ubicación"
+          },
+          {
+            "in": "query",
+            "name": "longitude",
+            "schema": {
+              "type": "number",
+              "format": "float"
+            },
+            "required": true,
+            "description": "Longitud de la ubicación"
+          },
+          {
+            "in": "query",
+            "name": "units",
+            "schema": {
+              "enum": [
+                "metric",
+                "imperial"
+              ],
+              "type": "string",
+              "default": "metric"
+            },
+            "required": false,
+            "description": "Unidades de medida (metric, imperial)"
+          }
+        ],
+        "description": "Retorna información sobre el clima actual en una ubicación específica"
+      }
+    },
+    "/historical/{date}": {
+      "get": {
+        "summary": "Obtener datos históricos",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistoricalData"
+                }
+              }
+            },
+            "description": "Datos históricos del clima"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Parámetros inválidos"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Datos no encontrados"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            },
+            "description": "Error interno del servidor"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "date",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "required": true,
+            "description": "Fecha en formato YYYY-MM-DD"
+          },
+          {
+            "in": "query",
+            "name": "latitude",
+            "schema": {
+              "type": "number",
+              "format": "float"
+            },
+            "required": true,
+            "description": "Latitud de la ubicación"
+          },
+          {
+            "in": "query",
+            "name": "longitude",
+            "schema": {
+              "type": "number",
+              "format": "float"
+            },
+            "required": true,
+            "description": "Longitud de la ubicación"
+          },
+          {
+            "in": "query",
+            "name": "units",
+            "schema": {
+              "enum": [
+                "metric",
+                "imperial"
+              ],
+              "type": "string",
+              "default": "metric"
+            },
+            "required": false,
+            "description": "Unidades de medida (metric, imperial)"
+          }
+        ],
+        "description": "Retorna datos históricos del clima para una fecha específica"
+      }
+    }
+  },
+  "openapi": "3.0.0",
+  "servers": [
+    {
+      "url": "https://api.meteo-network.com/v1",
+      "description": "Servidor de producción"
+    },
+    {
+      "url": "https://staging-api.meteo-network.com/v1",
+      "description": "Servidor de staging"
+    }
+  ],
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ],
+  "components": {
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "integer",
+            "description": "Código de error"
+          },
+          "details": {
+            "type": "string",
+            "description": "Detalles adicionales sobre el error"
+          },
+          "message": {
+            "type": "string",
+            "description": "Mensaje de error"
+          }
+        }
+      },
+      "Location": {
+        "type": "object",
+        "required": [
+          "latitude",
+          "longitude"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nombre de la ubicación (ciudad, pueblo, etc.)"
+          },
+          "country": {
+            "type": "string",
+            "description": "País de la ubicación"
+          },
+          "latitude": {
+            "type": "number",
+            "format": "float",
+            "description": "Latitud de la ubicación"
+          },
+          "timezone": {
+            "type": "string",
+            "description": "Zona horaria de la ubicación"
+          },
+          "longitude": {
+            "type": "number",
+            "format": "float",
+            "description": "Longitud de la ubicación"
+          }
+        }
+      },
+      "WeatherData": {
+        "type": "object",
+        "required": [
+          "location",
+          "timestamp",
+          "temperature",
+          "conditions"
+        ],
+        "properties": {
+          "icon": {
+            "type": "string",
+            "description": "Código del icono para las condiciones"
+          },
+          "humidity": {
+            "type": "integer",
+            "maximum": 100,
+            "minimum": 0,
+            "description": "Humedad relativa en porcentaje"
+          },
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "pressure": {
+            "type": "number",
+            "format": "float",
+            "description": "Presión atmosférica"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Hora de la medición"
+          },
+          "conditions": {
+            "type": "string",
+            "description": "Descripción de las condiciones actuales"
+          },
+          "feels_like": {
+            "type": "number",
+            "format": "float",
+            "description": "Sensación térmica"
+          },
+          "wind_speed": {
+            "type": "number",
+            "format": "float",
+            "description": "Velocidad del viento"
+          },
+          "temperature": {
+            "type": "number",
+            "format": "float",
+            "description": "Temperatura actual"
+          },
+          "wind_direction": {
+            "type": "integer",
+            "maximum": 359,
+            "minimum": 0,
+            "description": "Dirección del viento en grados"
+          }
+        }
+      },
+      "ForecastData": {
+        "type": "object",
+        "required": [
+          "location",
+          "units",
+          "daily_forecast"
+        ],
+        "properties": {
+          "units": {
+            "enum": [
+              "metric",
+              "imperial"
+            ],
+            "type": "string",
+            "description": "Unidades de medida utilizadas"
+          },
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "daily_forecast": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DailyForecast"
+            },
+            "description": "Pronóstico diario"
+          }
+        }
+      },
+      "DailyForecast": {
+        "type": "object",
+        "required": [
+          "date",
+          "temp_max",
+          "temp_min",
+          "conditions"
+        ],
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date",
+            "description": "Fecha del pronóstico"
+          },
+          "icon": {
+            "type": "string",
+            "description": "Código del icono para las condiciones"
+          },
+          "humidity": {
+            "type": "integer",
+            "maximum": 100,
+            "minimum": 0,
+            "description": "Humedad relativa promedio en porcentaje"
+          },
+          "temp_max": {
+            "type": "number",
+            "format": "float",
+            "description": "Temperatura máxima"
+          },
+          "temp_min": {
+            "type": "number",
+            "format": "float",
+            "description": "Temperatura mínima"
+          },
+          "conditions": {
+            "type": "string",
+            "description": "Descripción de las condiciones pronosticadas"
+          },
+          "wind_speed": {
+            "type": "number",
+            "format": "float",
+            "description": "Velocidad del viento promedio"
+          },
+          "precipitation_probability": {
+            "type": "integer",
+            "maximum": 100,
+            "minimum": 0,
+            "description": "Probabilidad de precipitación en porcentaje"
+          }
+        }
+      },
+      "HistoricalData": {
+        "type": "object",
+        "required": [
+          "location",
+          "date",
+          "units"
+        ],
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date",
+            "description": "Fecha de los datos históricos"
+          },
+          "units": {
+            "enum": [
+              "metric",
+              "imperial"
+            ],
+            "type": "string",
+            "description": "Unidades de medida utilizadas"
+          },
+          "humidity": {
+            "type": "integer",
+            "maximum": 100,
+            "minimum": 0,
+            "description": "Humedad relativa promedio en porcentaje"
+          },
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "conditions": {
+            "type": "string",
+            "description": "Descripción general de las condiciones"
+          },
+          "wind_speed": {
+            "type": "number",
+            "format": "float",
+            "description": "Velocidad del viento promedio"
+          },
+          "temperature": {
+            "type": "object",
+            "properties": {
+              "avg": {
+                "type": "number",
+                "format": "float",
+                "description": "Temperatura promedio"
+              },
+              "max": {
+                "type": "number",
+                "format": "float",
+                "description": "Temperatura máxima"
+              },
+              "min": {
+                "type": "number",
+                "format": "float",
+                "description": "Temperatura mínima"
+              }
+            }
+          },
+          "precipitation": {
+            "type": "number",
+            "format": "float",
+            "description": "Cantidad de precipitación"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "in": "header",
+        "name": "X-API-Key",
+        "type": "apiKey"
+      }
+    }
+  }
+}

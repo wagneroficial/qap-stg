@@ -1,0 +1,9 @@
+{
+  "workspace": {
+    "name": "CurrentWeather news"
+  },
+  "environment": {
+    "repository": "qap-stg.git",
+    "gitUsername": "wagneroficial"
+  }
+}
