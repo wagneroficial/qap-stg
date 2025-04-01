@@ -1,0 +1,55 @@
+{
+  "info": {
+    "title": "Weather Wise",
+    "version": "0.1.9",
+    "description": "Uma API RESTful que fornece dados meteorológicos atualizados em tempo real e previsões para diversas localidades. Permite consultar o clima atual, previsões para os próximos dias e dados históricos de temperatura, umidade, condições climáticas e outros parâmetros meteorológicos.\nPrincipais recursos:\n"
+  },
+  "tags": [],
+  "paths": {
+    "/weather-wise/currentweather": {
+      "get": {
+        "summary": "Retrieve Currentweather",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "parameters": []
+      }
+    }
+  },
+  "openapi": "3.0.0",
+  "servers": [
+    {
+      "url": "/",
+      "description": "Main (production) server"
+    },
+    {
+      "url": "/",
+      "description": "Internal test server"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "components": {
+    "schemas": {},
+    "requestBodies": {},
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

@@ -1,0 +1,100 @@
+_format_version: '3.0'
+services:
+  - name: weather-wise-quotes-service
+    url: ''
+    routes:
+      - name: weather-wise-quotes-route
+        paths:
+          - /quotes
+        strip_path: true
+        methods:
+          - GET
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: //quotes
+  - name: weather-wise-CurrentWeather-service
+    url: api.weatherapi.com
+    routes:
+      - name: weather-wise-CurrentWeather-route
+        paths:
+          - /currentweather
+        strip_path: true
+        methods:
+          - GET
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: /current
+  - name: weather-wise-New route-service
+    url: localhost
+    routes:
+      - name: weather-wise-New route-route
+        paths:
+          - /contas
+        strip_path: true
+        methods:
+          - GET
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: /contas
+  - name: weather-wise-symbols-service
+    url: ''
+    routes:
+      - name: weather-wise-symbols-route
+        paths:
+          - /symbols
+        strip_path: true
+        methods:
+          - GET
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: //symbols
+  - name: weather-wise-symbols-service
+    url: ''
+    routes:
+      - name: weather-wise-symbols-route
+        paths:
+          - /symbols
+        strip_path: true
+        methods:
+          - GET
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: //symbols
+  - name: weather-wise-airlines-service
+    url: ''
+    routes:
+      - name: weather-wise-airlines-route
+        paths:
+          - /reference-data/airlines
+        strip_path: true
+        methods:
+          - GET
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: //reference-data/airlines
+  - name: weather-wise-{date}-service
+    url: https://api.meteo-network.com
+    routes:
+      - name: weather-wise-{date}-route
+        paths:
+          - /historical/{date}
+        strip_path: true
+        methods:
+          - GET
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: //v1/historical/{date}
