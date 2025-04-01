@@ -1,0 +1,44 @@
+_format_version: '3.0'
+services:
+  - name: currentweather-current-weather-service
+    url: https://api.meteo-network.com
+    routes:
+      - name: currentweather-current-weather-route
+        paths:
+          - /current-weather
+        strip_path: true
+        methods:
+          - GET
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: //v1/current-weather
+  - name: currentweather-forecast-service
+    url: https://api.meteo-network.com
+    routes:
+      - name: currentweather-forecast-route
+        paths:
+          - /forecast
+        strip_path: true
+        methods:
+          - GET
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: //v1/forecast
+  - name: currentweather-{date}-service
+    url: https://api.meteo-network.com
+    routes:
+      - name: currentweather-{date}-route
+        paths:
+          - /historical/{date}
+        strip_path: true
+        methods:
+          - GET
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: //v1/historical/{date}
