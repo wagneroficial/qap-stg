@@ -1,0 +1,282 @@
+_format_version: '3.0'
+services:
+  - name: events-api-{petId}-service
+    url: https://petstore.swagger.io
+    routes:
+      - name: events-api-{petId}-route
+        paths:
+          - /swagger-petstore-20/pet/{petId}
+        strip_path: true
+        methods:
+          - DELETE
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: //v2/pet/{petId}
+  - name: events-api-user-service
+    url: https://petstore.swagger.io
+    routes:
+      - name: events-api-user-route
+        paths:
+          - /swagger-petstore-20/user
+        strip_path: true
+        methods:
+          - POST
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: //v2/user
+  - name: events-api-createWithArray-service
+    url: https://petstore.swagger.io
+    routes:
+      - name: events-api-createWithArray-route
+        paths:
+          - /swagger-petstore-20/user/createWithArray
+        strip_path: true
+        methods:
+          - POST
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: //v2/user/createWithArray
+  - name: events-api-createWithList-service
+    url: https://petstore.swagger.io
+    routes:
+      - name: events-api-createWithList-route
+        paths:
+          - /swagger-petstore-20/user/createWithList
+        strip_path: true
+        methods:
+          - POST
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: //v2/user/createWithList
+  - name: events-api-{username}-service
+    url: https://petstore.swagger.io
+    routes:
+      - name: events-api-{username}-route
+        paths:
+          - /swagger-petstore-20/user/{username}
+        strip_path: true
+        methods:
+          - GET
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: //v2/user/{username}
+  - name: events-api-pet-service
+    url: https://petstore.swagger.io
+    routes:
+      - name: events-api-pet-route
+        paths:
+          - /swagger-petstore-20/pet
+        strip_path: true
+        methods:
+          - POST
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: //v2/pet
+  - name: events-api-pet-service
+    url: https://petstore.swagger.io
+    routes:
+      - name: events-api-pet-route
+        paths:
+          - /swagger-petstore-20/pet
+        strip_path: true
+        methods:
+          - PUT
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: //v2/pet
+  - name: events-api-findByTags-service
+    url: https://petstore.swagger.io
+    routes:
+      - name: events-api-findByTags-route
+        paths:
+          - /swagger-petstore-20/pet/findByTags
+        strip_path: true
+        methods:
+          - GET
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: //v2/pet/findByTags
+  - name: events-api-{orderId}-service
+    url: https://petstore.swagger.io
+    routes:
+      - name: events-api-{orderId}-route
+        paths:
+          - /swagger-petstore-20/store/order/{orderId}
+        strip_path: true
+        methods:
+          - GET
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: //v2/store/order/{orderId}
+  - name: events-api-{orderId}-service
+    url: https://petstore.swagger.io
+    routes:
+      - name: events-api-{orderId}-route
+        paths:
+          - /swagger-petstore-20/store/order/{orderId}
+        strip_path: true
+        methods:
+          - DELETE
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: //v2/store/order/{orderId}
+  - name: events-api-inventory-service
+    url: https://petstore.swagger.io
+    routes:
+      - name: events-api-inventory-route
+        paths:
+          - /swagger-petstore-20/store/inventory
+        strip_path: true
+        methods:
+          - GET
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: //v2/store/inventory
+  - name: events-api-order-service
+    url: https://petstore.swagger.io
+    routes:
+      - name: events-api-order-route
+        paths:
+          - /swagger-petstore-20/store/order
+        strip_path: true
+        methods:
+          - POST
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: //v2/store/order
+  - name: events-api-logout-service
+    url: https://petstore.swagger.io
+    routes:
+      - name: events-api-logout-route
+        paths:
+          - /swagger-petstore-20/user/logout
+        strip_path: true
+        methods:
+          - GET
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: //v2/user/logout
+  - name: events-api-{username}-service
+    url: https://petstore.swagger.io
+    routes:
+      - name: events-api-{username}-route
+        paths:
+          - /swagger-petstore-20/user/{username}
+        strip_path: true
+        methods:
+          - DELETE
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: //v2/user/{username}
+  - name: events-api-{petId}-service
+    url: https://petstore.swagger.io
+    routes:
+      - name: events-api-{petId}-route
+        paths:
+          - /swagger-petstore-20/pet/{petId}
+        strip_path: true
+        methods:
+          - GET
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: //v2/pet/{petId}
+  - name: events-api-{username}-service
+    url: https://petstore.swagger.io
+    routes:
+      - name: events-api-{username}-route
+        paths:
+          - /swagger-petstore-20/user/{username}
+        strip_path: true
+        methods:
+          - PUT
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: //v2/user/{username}
+  - name: events-api-findByStatus-service
+    url: https://petstore.swagger.io
+    routes:
+      - name: events-api-findByStatus-route
+        paths:
+          - /swagger-petstore-20/pet/findByStatus
+        strip_path: true
+        methods:
+          - GET
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: //v2/pet/findByStatus
+  - name: events-api-login-service
+    url: https://petstore.swagger.io
+    routes:
+      - name: events-api-login-route
+        paths:
+          - /swagger-petstore-20/user/login
+        strip_path: true
+        methods:
+          - GET
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: //v2/user/login
+  - name: events-api-{petId}-service
+    url: https://petstore.swagger.io
+    routes:
+      - name: events-api-{petId}-route
+        paths:
+          - /swagger-petstore-20/pet/{petId}
+        strip_path: true
+        methods:
+          - POST
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: //v2/pet/{petId}
+  - name: events-api-uploadImage-service
+    url: https://petstore.swagger.io
+    routes:
+      - name: events-api-uploadImage-route
+        paths:
+          - /swagger-petstore-20/pet/{petId}/uploadImage
+        strip_path: true
+        methods:
+          - POST
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: //v2/pet/{petId}/uploadImage
