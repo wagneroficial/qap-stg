@@ -4,7 +4,7 @@ let form = document.getElementById("form");
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const selectedConnectors = [{
-        url: ":8881/users",
+        url: ":121/users",
         method: "POST",
         headers: {
           "Content-Type": "application/json",
