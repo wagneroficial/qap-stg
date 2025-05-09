@@ -1,0 +1,134 @@
+{
+  "_id": {
+    "$oid": "681df03d09b51935c9c22a29"
+  },
+  "name": "My first connector",
+  "connector": "flatdb",
+  "workspaceId": "681df03c09b51935c9c22a22",
+  "port": 8880,
+  "enabled": true,
+  "created_at": "2025-05-09T12:08:28.775Z",
+  "updated_at": "2025-05-09T12:08:28.775Z",
+  "is_trashed": false,
+  "interceptors": [
+    {
+      "name": "Business Rule",
+      "description": "Define customized business rules to intercept and control requests.",
+      "type": "business-rule",
+      "details": {
+        "type": "all",
+        "block_on_error": true,
+        "allowed_requests": [
+          {
+            "path": "users",
+            "method": "POST"
+          }
+        ],
+        "conditions": [
+          {
+            "field": "userName",
+            "type": "string",
+            "condition": "notEqual",
+            "value": "admin"
+          },
+          {
+            "type": "string",
+            "condition": "notEqual",
+            "field": "userName",
+            "value": "root"
+          }
+        ]
+      }
+    }
+  ],
+  "adapters": [],
+  "listeners": [],
+  "config": {
+    "userFileName": "users",
+    "relationshipFileName": "relationships",
+    "groupFileName": "groups"
+  },
+  "mapping": {
+    "group": [
+      {
+        "name": "_id_",
+        "mapTo": "id"
+      },
+      {
+        "name": "displayName",
+        "mapTo": "displayName"
+      },
+      {
+        "name": "member",
+        "mapTo": "members.value"
+      }
+    ],
+    "user": [
+      {
+        "name": "_id_",
+        "mapTo": "id"
+      },
+      {
+        "name": "username",
+        "mapTo": "userName"
+      },
+      {
+        "name": "active",
+        "mapTo": "active"
+      },
+      {
+        "name": "givenName",
+        "mapTo": "name.givenName"
+      },
+      {
+        "name": "familyName",
+        "mapTo": "name.familyName"
+      },
+      {
+        "name": "displayName",
+        "mapTo": "name.formatted"
+      },
+      {
+        "name": "email",
+        "mapTo": "emails.work.value"
+      },
+      {
+        "name": "telephoneNumber",
+        "mapTo": "phoneNumbers.work.value"
+      },
+      {
+        "name": "postalCode",
+        "mapTo": "addresses.work.postalCode"
+      },
+      {
+        "name": "streetAddress",
+        "mapTo": "addresses.work.streetAddress"
+      }
+    ]
+  },
+  "auth": [
+    {
+      "type": "basic",
+      "details": {
+        "username": "USERNAME",
+        "password": "PASSWORD"
+      }
+    }
+  ],
+  "metadata": {
+    "authentication": {
+      "items": [
+        {
+          "details": {
+            "username": false,
+            "password": true
+          }
+        }
+      ]
+    }
+  },
+  "user_id": "0ee9fac7-a951-4093-b441-1a6f7239f8f7",
+  "_etag": {
+    "$oid": "681df03d09b51935c9c22a28"
+  }
+}

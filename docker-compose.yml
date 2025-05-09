@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  scimgateway:
+    build: ./scimgateway
+    ports:
+      - "8880:8880"
+    restart: always
+    environment:
+      flatdb-my-first-connector_BASIC_0_USERNAME: admin
+      flatdb-my-first-connector_BASIC_0_PASSWORD: admin
+      ENABLE_REQUEST_LOGS: true
+      USERNAME: admin
+      PASSWORD: admin
+    volumes:
+      - data:/home/node/app/data
+   
+  forms:
+    depends_on:
+      - scimgateway
+    build: ./forms
+    ports:
+      - "8000:80"
+    restart: always
+  
+     
+
+volumes:
+  data:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: ./data

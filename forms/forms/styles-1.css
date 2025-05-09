@@ -1,0 +1,218 @@
+
+/* ----------------------------------- */
+/* form page styles */
+
+.card_form[data-form="1"] {
+        background-color: #f7f7f7;
+      }
+
+
+body {
+  height: 90vh;
+  width: 100vw;
+  font-family: "Inter", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+input,
+select {
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: none;
+  background-color: white;
+  width: 100%;
+  min-height: 40px;
+}
+
+
+input:focus,
+select:focus {
+  outline: none;
+}
+
+/* ----------------------------------- */
+/* content styles */
+
+.content_input {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.content_input img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* ----------------------------------- */
+/* premade styles */
+
+.premade_input {
+  border-radius: 8px;
+  padding: 0.5rem;
+}
+
+.premade_internal_grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding-top: 1rem;
+}
+
+/* ----------------------------------- */
+/* form input styles */
+
+.required {
+  color: rgb(129, 44, 44);
+}
+
+.input_custom {
+  margin-bottom: 1rem;
+}
+
+.input_custom_label{
+  margin-bottom: 0.2rem;
+  font-weight: bold; 
+}
+
+.input_custom_sub_label {
+  font-size: 0.7rem;
+}
+
+.submit-btn {
+  margin-top: 2rem;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  width: 12rem;
+  height: 3rem;
+  text-align: center;
+  color: white;
+  border: none;
+  border-radius: 0.2rem; 
+  cursor: pointer;
+}
+
+/* ----------------------------------- */
+/* switch styles */
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 24px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 3px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #b3b3b3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #b6b8b9;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(20px);
+  -ms-transform: translateX(20px);
+  transform: translateX(20px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 24px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+.prebuilt_input {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #E5E7EB;
+  width: 100%;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.prebuilt_internal_grid{
+  display: flex;
+  justify-content: space-evenly;
+}
+.message-container {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+.message {
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.success {
+  background-color: white;
+  border: 1px solid #4caf50;
+  color: #000000;
+}
+
+.error {
+  background-color: white;
+  border: 1px solid #dc3545;
+  color: #000000;
+}
+
+
+.button-container {
+  margin-top: 50px;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  font-size: 16px;
+}  
+
