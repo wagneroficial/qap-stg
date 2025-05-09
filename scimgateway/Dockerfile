@@ -22,10 +22,18 @@
   # Copy app to Docker container
   COPY --chown=node:node . .
   
-  
+  # Copy prisma/ to container
+  COPY prisma/ prisma
+
+  ENV DATABASE_URL=mongodb+srv://admin:cancao123@cluster0.6igatzu.mongodb.net/qscim?w=majority&retryWrites=true&authSource=admin
+
+  # Running migration to create database tables with Prisma Migrate
+  RUN npx prisma generate
+  RUN npx prisma db push
 
   
 
+  EXPOSE 121
   EXPOSE 8881
   EXPOSE 8880
   

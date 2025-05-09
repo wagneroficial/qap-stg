@@ -4,10 +4,13 @@ services:
   scimgateway:
     build: ./scimgateway
     ports:
+      - "121:121"
       - "8881:8881"
       - "8880:8880"
     restart: always
     environment:
+      mongodb-aperiam_BASIC_0_USERNAME: admin
+      mongodb-aperiam_BASIC_0_PASSWORD: admin
       loki-loki_BASIC_0_USERNAME: admin
       loki-loki_BASIC_0_PASSWORD: admin
       flatdb-my-first-connector_BASIC_0_USERNAME: admin
@@ -15,6 +18,7 @@ services:
       ENABLE_REQUEST_LOGS: true
       USERNAME: admin
       PASSWORD: admin
+      DATABASE_URL: mongodb+srv://admin:cancao123@cluster0.6igatzu.mongodb.net/qscim?w=majority&retryWrites=true&authSource=admin
     volumes:
       - data:/home/node/app/data
    

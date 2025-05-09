@@ -1,0 +1,143 @@
+{
+  "scimgateway": {
+    "port": 121,
+    "localhostonly": false,
+    "payloadSize": null,
+    "scim": {
+      "version": "2.0",
+      "customSchema": null,
+      "skipTypeConvert": false,
+      "usePutSoftSync": false
+    },
+    "log": {
+      "loglevel": {
+        "file": "debug",
+        "console": "error"
+      },
+      "customMasking": null
+    },
+    "auth": {
+      "basic": [
+        {
+          "username": "process.env.mongodb-aperiam_BASIC_0_USERNAME",
+          "password": "process.env.mongodb-aperiam_BASIC_0_PASSWORD",
+          "readOnly": false,
+          "baseEntities": []
+        }
+      ],
+      "bearerToken": [],
+      "bearerJwtAzure": [
+        {
+          "tenantIdGUID": null,
+          "readOnly": false,
+          "baseEntities": []
+        }
+      ],
+      "bearerJwt": [
+        {
+          "secret": null,
+          "publicKey": null,
+          "options": {
+            "issuer": null
+          },
+          "readOnly": false,
+          "baseEntities": []
+        }
+      ],
+      "bearerOAuth": [],
+      "certificate": {
+        "key": null,
+        "cert": null,
+        "ca": null,
+        "pfx": {
+          "bundle": null,
+          "password": null
+        }
+      },
+      "ipAllowList": [],
+      "emailOnError": {
+        "smtp": {
+          "enabled": false,
+          "host": null,
+          "port": 587,
+          "proxy": null,
+          "authenticate": true,
+          "username": null,
+          "password": null,
+          "sendInterval": 15,
+          "to": null,
+          "cc": null
+        }
+      }
+    }
+  },
+  "endpoint": {
+    "connection": {
+      "database": "qscim",
+      "userCollectionName": "users",
+      "groupCollectionName": "groups"
+    },
+    "map": {
+      "group": {
+        "id": {
+          "mapTo": "id",
+          "type": "string"
+        },
+        "_id": {
+          "mapTo": "id",
+          "type": "string"
+        },
+        "name": {
+          "mapTo": "displayName",
+          "type": "string"
+        }
+      },
+      "user": {
+        "id": {
+          "mapTo": "id",
+          "type": "string"
+        },
+        "_id": {
+          "mapTo": "id",
+          "type": "string"
+        },
+        "username": {
+          "mapTo": "userName",
+          "type": "string"
+        },
+        "active": {
+          "mapTo": "active",
+          "type": "boolean"
+        },
+        "givenName": {
+          "mapTo": "name.givenName",
+          "type": "string"
+        },
+        "familyName": {
+          "mapTo": "name.familyName",
+          "type": "string"
+        },
+        "displayName": {
+          "mapTo": "name.formatted",
+          "type": "string"
+        },
+        "email": {
+          "mapTo": "emails.work.value",
+          "type": "string"
+        },
+        "postalCode": {
+          "mapTo": "addresses.work.postalCode",
+          "type": "string"
+        },
+        "streetAddress": {
+          "mapTo": "addresses.work.streetAddress",
+          "type": "string"
+        },
+        "telephoneNumber": {
+          "mapTo": "phoneNumbers.work.value",
+          "type": "string"
+        }
+      }
+    }
+  }
+}
