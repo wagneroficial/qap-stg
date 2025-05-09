@@ -26,6 +26,7 @@
 
   
 
+  EXPOSE 8881
   EXPOSE 8880
   
   # Running application (single proccess)

@@ -5,6 +5,8 @@ info:
   description: SCIM 2.0 demo API. Defines the SCIM 2.0 endpoints exposed for manage users and groups.
   version: 1.0.0
 servers:
+  - url: https://qscim-stg.konneqt.cloud/api/container/681df03c09b51935c9c22a22/8881
+    description: "loki: loki Connector"
   - url: https://qscim-stg.konneqt.cloud/api/container/681df03c09b51935c9c22a22/8880
     description: "My first connector: flatdb Connector"
 security: 

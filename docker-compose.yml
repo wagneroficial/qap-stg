@@ -4,9 +4,12 @@ services:
   scimgateway:
     build: ./scimgateway
     ports:
+      - "8881:8881"
       - "8880:8880"
     restart: always
     environment:
+      loki-loki_BASIC_0_USERNAME: admin
+      loki-loki_BASIC_0_PASSWORD: admin
       flatdb-my-first-connector_BASIC_0_USERNAME: admin
       flatdb-my-first-connector_BASIC_0_PASSWORD: admin
       ENABLE_REQUEST_LOGS: true
