@@ -1,0 +1,72 @@
+_format_version: '3.0'
+services:
+  - name: musicstream-api-songs-service
+    url: https://api.musicstream.com
+    routes:
+      - name: musicstream-api-songs-route
+        paths:
+          - /musicstream-api/songs
+        strip_path: true
+        methods:
+          - GET
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: /v1/songs
+  - name: musicstream-api-{songId}-service
+    url: https://api.musicstream.com
+    routes:
+      - name: musicstream-api-{songId}-route
+        paths:
+          - /musicstream-api/songs/{songId}
+        strip_path: true
+        methods:
+          - GET
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: /v1/songs/{songId}
+  - name: musicstream-api-playlists-service
+    url: https://api.musicstream.com
+    routes:
+      - name: musicstream-api-playlists-route
+        paths:
+          - /musicstream-api/playlists
+        strip_path: true
+        methods:
+          - GET
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: /v1/playlists
+  - name: musicstream-api-songs-service
+    url: https://api.musicstream.com
+    routes:
+      - name: musicstream-api-songs-route
+        paths:
+          - /musicstream-api/songs
+        strip_path: true
+        methods:
+          - GET
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: /v1/songs
+  - name: musicstream-api-playlists-service
+    url: https://api.musicstream.com
+    routes:
+      - name: musicstream-api-playlists-route
+        paths:
+          - /musicstream-api/playlists
+        strip_path: true
+        methods:
+          - GET
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: /v1/playlists
