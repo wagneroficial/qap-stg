@@ -1,0 +1,9 @@
+{
+  "workspace": {
+    "name": "music 2"
+  },
+  "environment": {
+    "repository": "qap-stg.git",
+    "gitUsername": "wagneroficial"
+  }
+}
