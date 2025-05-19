@@ -1,0 +1,9 @@
+{
+  "workspace": {
+    "name": "APIS-a"
+  },
+  "environment": {
+    "repository": "qap-stg.git",
+    "gitUsername": "wagneroficial"
+  }
+}
