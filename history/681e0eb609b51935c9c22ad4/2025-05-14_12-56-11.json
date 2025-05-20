@@ -1,0 +1,268 @@
+{
+  "_id": {
+    "$oid": "681e0eb609b51935c9c22ad4"
+  },
+  "name": "aperiam",
+  "port": 121,
+  "connector": "mongodb",
+  "workspaceId": "681df03c09b51935c9c22a22",
+  "enabled": true,
+  "created_at": "2025-05-09T14:18:29.493Z",
+  "updated_at": "2025-05-14T12:56:11.445Z",
+  "mapping": {
+    "description": "",
+    "user": [
+      {
+        "name": "_id",
+        "mapTo": "id",
+        "type": "string"
+      },
+      {
+        "name": "username",
+        "mapTo": "userName",
+        "type": "string"
+      },
+      {
+        "name": "active",
+        "mapTo": "active",
+        "type": "boolean"
+      },
+      {
+        "name": "givenName",
+        "mapTo": "name.givenName",
+        "type": "string"
+      },
+      {
+        "name": "familyName",
+        "mapTo": "name.familyName",
+        "type": "string"
+      },
+      {
+        "name": "displayName",
+        "mapTo": "name.formatted",
+        "type": "string"
+      },
+      {
+        "name": "email",
+        "mapTo": "emails.work.value",
+        "type": "string"
+      },
+      {
+        "name": "postalCode",
+        "mapTo": "addresses.work.postalCode",
+        "type": "string"
+      },
+      {
+        "name": "streetAddress",
+        "mapTo": "addresses.work.streetAddress",
+        "type": "string"
+      },
+      {
+        "name": "telephoneNumber",
+        "mapTo": "phoneNumbers.work.value",
+        "type": "string"
+      }
+    ],
+    "group": [
+      {
+        "name": "_id",
+        "mapTo": "id",
+        "type": "string"
+      },
+      {
+        "name": "name",
+        "mapTo": "displayName",
+        "type": "string"
+      }
+    ]
+  },
+  "is_trashed": false,
+  "config": {
+    "description": "",
+    "url": "mongodb+srv://admin:cancao123@cluster0.6igatzu.mongodb.net/?w=majority&retryWrites=true&authSource=admin",
+    "database": "qscim",
+    "userCollectionName": "users",
+    "groupCollectionName": "groups"
+  },
+  "interceptors": [
+    {
+      "name": "API Request",
+      "description": "Make request to third party applications to enrich your application's payload.",
+      "type": "api",
+      "details": {
+        "url": "https://viacep.com.br/ws/01001000/json/",
+        "method": "GET",
+        "allowed_requests": [
+          {
+            "path": "users",
+            "method": "POST"
+          }
+        ],
+        "auth": [
+          {
+            "name": "type",
+            "value": "none"
+          }
+        ],
+        "errorMessage": "Error occurred",
+        "mapping": [
+          {
+            "name": "logradouro",
+            "mapTo": "addresses.work.streetAddress"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Business Rule",
+      "description": "Define customized business rules to intercept and control requests.",
+      "type": "business-rule",
+      "details": {
+        "type": "all",
+        "allowed_requests": [
+          {
+            "path": "users",
+            "method": "POST"
+          }
+        ],
+        "block_on_error": true,
+        "conditions": [
+          {
+            "field": "userName",
+            "type": "string",
+            "condition": "notEqual",
+            "value": "admin"
+          }
+        ]
+      }
+    }
+  ],
+  "adapters": [],
+  "listeners": [],
+  "auth": [
+    {
+      "name": "Basic Auth",
+      "type": "basic",
+      "details": {
+        "username": "USERNAME",
+        "password": "PASSWORD"
+      }
+    }
+  ],
+  "metadata": {
+    "adapters": {
+      "position": {
+        "x": 580,
+        "y": 500
+      },
+      "isNodeHidden": false,
+      "items": []
+    },
+    "interceptors": {
+      "position": {
+        "x": 580,
+        "y": 100
+      },
+      "isNodeHidden": false,
+      "items": [
+        {
+          "isNodeHidden": false,
+          "position": {
+            "x": 580,
+            "y": 0
+          },
+          "details": {
+            "url": false,
+            "method": false,
+            "allowed_requests": true,
+            "auth": true,
+            "headers": false,
+            "body": false,
+            "on_error": false,
+            "errorMessage": false,
+            "mapping": {
+              "isNodeHidden": false,
+              "logradouro": false
+            }
+          }
+        },
+        {
+          "isNodeHidden": false,
+          "position": {
+            "x": 580,
+            "y": 220
+          },
+          "details": {
+            "type": false,
+            "allowed_requests": true,
+            "block_on_error": false,
+            "on_error": false,
+            "errorMessage": false,
+            "conditions": {
+              "isNodeHidden": false
+            }
+          }
+        }
+      ]
+    },
+    "listeners": {
+      "position": {
+        "x": 580,
+        "y": 0
+      },
+      "isNodeHidden": false,
+      "items": []
+    },
+    "config": {
+      "isNodeHidden": false,
+      "position": {
+        "x": 580,
+        "y": 820
+      },
+      "url": false,
+      "database": false,
+      "userCollectionName": false,
+      "groupCollectionName": false
+    },
+    "mapping": {
+      "isNodeHidden": false,
+      "position": {
+        "x": 580,
+        "y": 1080
+      },
+      "user": {
+        "isNodeHidden": false
+      },
+      "group": {
+        "isNodeHidden": false
+      }
+    },
+    "authentication": {
+      "position": {
+        "x": 580,
+        "y": 600
+      },
+      "isNodeHidden": false,
+      "items": [
+        {
+          "isNodeHidden": false,
+          "position": {
+            "x": 580,
+            "y": 0
+          },
+          "details": {
+            "username": false,
+            "password": true,
+            "allowedMethods": false
+          }
+        }
+      ]
+    }
+  },
+  "user_id": "0ee9fac7-a951-4093-b441-1a6f7239f8f7",
+  "_etag": {
+    "$oid": "682492ec09b51935c9c2341c"
+  },
+  "description": "Configures MongoDB to be used as a data connector. It formats names, defines scimgateway settings and formats group and user mappings. ",
+  "relationship": false
+}

@@ -1,4 +1,7 @@
 {
+  "_id": {
+    "$oid": "681dfaa809b51935c9c22a93"
+  },
   "name": "loki",
   "port": 8881,
   "connector": "loki",
@@ -68,8 +71,8 @@
     }
   },
   "user_id": "0ee9fac7-a951-4093-b441-1a6f7239f8f7",
-  "_id": {
-    "$oid": "681dfaa809b51935c9c22a93"
+  "_etag": {
+    "$oid": "681dfaab09b51935c9c22a9f"
   },
   "description": "A lightweight in-memory database for fast and flexible data storage. Ideal for local data management and offline-first applications.",
   "relationship": false
