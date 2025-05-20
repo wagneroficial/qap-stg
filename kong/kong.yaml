@@ -1,0 +1,72 @@
+_format_version: '3.0'
+services:
+  - name: travelexplore-api-destinations-service
+    url: https://api.travelexplore.com
+    routes:
+      - name: travelexplore-api-destinations-route
+        paths:
+          - /travelexplore-api/
+        strip_path: true
+        methods:
+          - GET
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: /v1/destinations
+  - name: travelexplore-api-{destinationId}-service
+    url: https://api.travelexplore.com
+    routes:
+      - name: travelexplore-api-{destinationId}-route
+        paths:
+          - /travelexplore-api/
+        strip_path: true
+        methods:
+          - GET
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: /v1/destinations/{destinationId}
+  - name: travelexplore-api-accommodations-service
+    url: https://api.travelexplore.com
+    routes:
+      - name: travelexplore-api-accommodations-route
+        paths:
+          - /travelexplore-api/
+        strip_path: true
+        methods:
+          - GET
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: /v1/accommodations
+  - name: travelexplore-api-destinations-service
+    url: https://api.travelexplore.com
+    routes:
+      - name: travelexplore-api-destinations-route
+        paths:
+          - /travelexplore-api/
+        strip_path: true
+        methods:
+          - GET
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: /v1/destinations
+  - name: travelexplore-api-accommodations-service
+    url: https://api.travelexplore.com
+    routes:
+      - name: travelexplore-api-accommodations-route
+        paths:
+          - /travelexplore-api/
+        strip_path: true
+        methods:
+          - GET
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: /v1/accommodations
