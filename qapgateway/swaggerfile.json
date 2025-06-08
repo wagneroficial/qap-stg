@@ -1,0 +1,97 @@
+{
+  "info": {
+    "title": "API-Genderize",
+    "version": "1.0.0",
+    "description": "Predicts gender based on a person's name."
+  },
+  "tags": [],
+  "paths": {
+    "api-genderize/": {
+      "get": {
+        "summary": "Predict gender based on name",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "The name provided in the request."
+                    },
+                    "count": {
+                      "type": "integer",
+                      "description": "Number of occurrences used to calculate the prediction."
+                    },
+                    "gender": {
+                      "type": "string",
+                      "description": "Predicted gender (e.g., 'male', 'female')."
+                    },
+                    "probability": {
+                      "type": "number",
+                      "description": "The probability of the predicted gender."
+                    }
+                  }
+                }
+              }
+            },
+            "description": "Successful response containing predicted gender."
+          },
+          "400": {
+            "description": "Invalid request. The 'name' parameter is required."
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "name",
+            "schema": {
+              "type": "string",
+              "example": "anna"
+            },
+            "required": true,
+            "description": "The name of the person to predict the gender for."
+          },
+          {
+            "in": "query",
+            "name": "country_id",
+            "schema": {
+              "type": "string",
+              "example": "US"
+            },
+            "required": false,
+            "description": "Two-letter country code (ISO 3166-1 alpha-2) to refine predictions."
+          }
+        ],
+        "description": "Fetch predicted gender for a given name using the Genderize.io API."
+      }
+    }
+  },
+  "openapi": "3.0.0",
+  "servers": [
+    {
+      "url": "/",
+      "description": "Main (production) server"
+    },
+    {
+      "url": "/",
+      "description": "Internal test server"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "components": {
+    "schemas": {},
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
