@@ -1,0 +1,16 @@
+_format_version: '3.0'
+services:
+  - name: ip-geolocation-api--service
+    url: https://ipgeolocation.abstractapi.com
+    routes:
+      - name: ip-geolocation-api--route
+        paths:
+          - /ip-geolocation-api/v1/
+        strip_path: true
+        methods:
+          - GET
+    plugins:
+      - name: request-transformer
+        config:
+          replace:
+            uri: /v1/
