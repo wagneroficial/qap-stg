@@ -1,0 +1,92 @@
+{
+  "info": {
+    "title": "API-Nationalize",
+    "version": "1.0.0",
+    "description": "Predicts nationality based on a person's name."
+  },
+  "tags": [],
+  "paths": {
+    "api-nationalize/": {
+      "get": {
+        "summary": "Predict nationality based on name",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "The name provided in the request."
+                    },
+                    "country": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "country_id": {
+                            "type": "string",
+                            "description": "Two-letter country code (ISO 3166-1 alpha-2)."
+                          },
+                          "probability": {
+                            "type": "number",
+                            "description": "The probability of the name belonging to this nationality."
+                          }
+                        }
+                      },
+                      "description": "List of predicted nationalities with probabilities."
+                    }
+                  }
+                }
+              }
+            },
+            "description": "Successful response containing predicted nationalities."
+          },
+          "400": {
+            "description": "Invalid request. The 'name' parameter is required."
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "name",
+            "schema": {
+              "type": "string",
+              "example": "mohamed"
+            },
+            "required": true,
+            "description": "The name of the person to predict nationalities for."
+          }
+        ],
+        "description": "Fetch predicted nationalities for a given name using the Nationalize.io API."
+      }
+    }
+  },
+  "openapi": "3.0.0",
+  "servers": [
+    {
+      "url": "/",
+      "description": "Main (production) server"
+    },
+    {
+      "url": "/",
+      "description": "Internal test server"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "components": {
+    "schemas": {},
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
