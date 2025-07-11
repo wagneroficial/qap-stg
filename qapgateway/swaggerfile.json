@@ -1,0 +1,219 @@
+{
+  "info": {
+    "title": "TravelExplore API",
+    "contact": {
+      "email": "support@travelexploreapi.com"
+    },
+    "version": "1.0.0",
+    "description": "A robust API for accessing global travel data, including destinations, accommodations, tourist attractions, and transportation options. Ideal for building travel planning and booking systems."
+  },
+  "tags": [],
+  "paths": {
+    "travelexplore-api/destinations": {
+      "get": {
+        "summary": "Get a list of travel destinations",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Destination"
+                  }
+                }
+              }
+            },
+            "description": "List of destinations returned successfully"
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "type": "string",
+              "example": "Europe"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "country",
+            "schema": {
+              "type": "string",
+              "example": "France"
+            },
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "popularity",
+            "schema": {
+              "type": "string",
+              "example": "Top Rated"
+            },
+            "required": false
+          }
+        ],
+        "description": "Retrieve a list of travel destinations based on various filters such as region, country, or popularity."
+      }
+    },
+    "travelexplore-api/accommodations": {
+      "get": {
+        "summary": "Get accommodation options",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Accommodation"
+                  }
+                }
+              }
+            },
+            "description": "List of accommodations returned successfully"
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "destinationId",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "description": "Retrieve accommodation options such as hotels, vacation rentals, and hostels for a specified destination."
+      }
+    },
+    "travelexplore-api/destinations/{destinationId}": {
+      "get": {
+        "summary": "Get destination details",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Destination"
+                }
+              }
+            },
+            "description": "Destination details returned successfully"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "destinationId",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true
+          }
+        ],
+        "description": "Retrieve detailed information about a specific destination, including tourist attractions, accommodations, and travel tips."
+      }
+    }
+  },
+  "openapi": "3.0.2",
+  "servers": [
+    {
+      "url": "https://deploy_cumque_iste.on.qriarlabs.com",
+      "description": "Main (production) server"
+    },
+    {
+      "url": "https://deploy_cumque_iste.on.qriarlabs.com",
+      "description": "Internal test server"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "components": {
+    "schemas": {
+      "Destination": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 456
+          },
+          "name": {
+            "type": "string",
+            "example": "Paris"
+          },
+          "imageUrl": {
+            "type": "string",
+            "example": "https://example.com/images/paris.jpg"
+          },
+          "attractions": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "Eiffel Tower, Louvre Museum, Notre-Dame Cathedral"
+            }
+          },
+          "description": {
+            "type": "string",
+            "example": "Paris, the capital city of France, is known for its art, culture, fashion, and iconic landmarks like the Eiffel Tower."
+          },
+          "bestTimeToVisit": {
+            "type": "string",
+            "example": "Spring (April to June) and Fall (September to November)"
+          }
+        }
+      },
+      "Accommodation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 789
+          },
+          "name": {
+            "type": "string",
+            "example": "Hotel Le Meurice"
+          },
+          "type": {
+            "type": "string",
+            "example": "Hotel"
+          },
+          "rating": {
+            "type": "number",
+            "format": "float",
+            "example": 4.7
+          },
+          "location": {
+            "type": "string",
+            "example": "228 Rue de Rivoli, Paris, France"
+          },
+          "amenities": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "Free Wi-Fi, Gym, Spa, Restaurant"
+            }
+          },
+          "pricePerNight": {
+            "type": "number",
+            "format": "float",
+            "example": 320
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
